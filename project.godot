@@ -11,8 +11,22 @@ config_version=5
 [application]
 
 config/name="Open Vpet"
+run/main_scene="uid://cutkliyh2e3th"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="res://icon.svg"
+
+[autoload]
+
+Multithreading="*res://current/scripts/globals/autoloads/multithreading.gd"
+Saves="*res://current/scripts/globals/autoloads/saves.gd"
+SignalBus="*res://current/scripts/globals/autoloads/signal_bus.gd"
+InputHandler="*res://current/scripts/globals/autoloads/input_handler.gd"
+
+[display]
+
+window/size/viewport_width=1080
+window/size/viewport_height=1920
 
 [rendering]
 
