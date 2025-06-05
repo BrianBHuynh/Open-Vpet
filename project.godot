@@ -22,11 +22,19 @@ Multithreading="*res://current/scripts/globals/autoloads/multithreading.gd"
 Saves="*res://current/scripts/globals/autoloads/saves.gd"
 SignalBus="*res://current/scripts/globals/autoloads/signal_bus.gd"
 InputHandler="*res://current/scripts/globals/autoloads/input_handler.gd"
+StatManager="*res://current/scripts/globals/autoloads/stat_manager.gd"
+
+[debug]
+
+gdscript/warnings/unused_signal=0
+gdscript/warnings/untyped_declaration=1
+gdscript/warnings/inferred_declaration=1
 
 [display]
 
 window/size/viewport_width=1080
 window/size/viewport_height=1920
+window/stretch/scale=0.5
 
 [rendering]
 

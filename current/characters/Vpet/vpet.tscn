@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2c6f63e1dvms"]
+
+[ext_resource type="Script" uid="uid://c0u2vqoxsp3x6" path="res://current/characters/Vpet/vpet.gd" id="1_4s48g"]
+[ext_resource type="Texture2D" uid="uid://dk2pse0nvag0j" path="res://current/assets/images/archer.png" id="1_05err"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4s48g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_05err")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Vpet" type="Node2D"]
+script = ExtResource("1_4s48g")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-7.86781e-06, -240)
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_4s48g")
+
+[node name="ColorRect" type="ColorRect" parent="AnimatedSprite2D"]
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+color = Color(0, 0, 0, 1)

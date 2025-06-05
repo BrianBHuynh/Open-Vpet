@@ -7,7 +7,7 @@ var networking: Dictionary = {}
 var keybindings: Dictionary = {}
 var encryption_key: String = OS.get_unique_id()
 var save_loaded: bool = false
-const save_extension: String = ".MIEU"
+const save_extension: String = ".open_vpet"
 const checksum_extension: String = ".COLLAR"
 var autosave_tick: int = 0
 var autosave_interval: int = 36000
@@ -18,11 +18,11 @@ func _ready() -> void:
 	make_dir("user://backup")
 	make_dir("user://fallback")
 	make_dir("user://fonts")
-	data = load_file_encrypted("mieu")
-	
+	data = load_file_encrypted("open_vpet")
 	settings = load_file("settings")
 	networking = load_file("networking")
 	keybindings = load_file("keybindings")
+	SignalBus.load_finished.emit()
 	save_loaded = true
 
 
@@ -88,7 +88,7 @@ func get_or_return(dictionary: String, key: String, default_value: Variant) -> V
 
 func save_game() -> void:
 	store_player_state()
-	Multithreading.add_task(save_file_encrypted.bind(data, "mieu"))
+	Multithreading.add_task(save_file_encrypted.bind(data, "open_vpet"))
 	Multithreading.add_task(save_file.bind(settings, "settings"))
 	Multithreading.add_task(save_file.bind(networking, "networking"))
 	Multithreading.add_task(save_file.bind(keybindings, "keybindings"))
