@@ -3,8 +3,6 @@ extends Node
 
 var data: Dictionary = {}
 var settings: Dictionary = {}
-var networking: Dictionary = {}
-var keybindings: Dictionary = {}
 var encryption_key: String = OS.get_unique_id()
 var save_loaded: bool = false
 const save_extension: String = ".open_vpet"
@@ -20,8 +18,6 @@ func _ready() -> void:
 	make_dir("user://fonts")
 	data = load_file_encrypted("open_vpet")
 	settings = load_file("settings")
-	networking = load_file("networking")
-	keybindings = load_file("keybindings")
 	SignalBus.load_finished.emit()
 	save_loaded = true
 
@@ -45,10 +41,6 @@ func set_value(dictionary: String, key: String, value: Variant) -> void:
 	match dictionary:
 		"settings":
 			settings[key] = value
-		"networking":
-			networking[key] = value
-		"keybindings":
-			keybindings[key] = value
 		_:
 			if(not data.has(dictionary)):
 				data[dictionary] = {}
@@ -66,10 +58,6 @@ func get_or_add(dictionary: String, key: String, default_value: Variant) -> Vari
 	match dictionary:
 		"settings":
 			return settings.get_or_add(key, default_value)
-		"networking":
-			return networking.get_or_add(key, default_value)
-		"keybindings":
-			return keybindings.get_or_add(key, default_value)
 		_:
 			return data.get_or_add(dictionary, {}).get_or_add(key, default_value)
 
@@ -78,10 +66,6 @@ func get_or_return(dictionary: String, key: String, default_value: Variant) -> V
 	match dictionary:
 		"settings":
 			return settings.get(key, default_value)
-		"networking":
-			return networking.get(key, default_value)
-		"keybindings":
-			return keybindings.get(key, default_value)
 		_:
 			return data.get(dictionary, {}).get(key, default_value)
 
@@ -90,8 +74,6 @@ func save_game() -> void:
 	store_player_state()
 	Multithreading.add_task(save_file_encrypted.bind(data, "open_vpet"))
 	Multithreading.add_task(save_file.bind(settings, "settings"))
-	Multithreading.add_task(save_file.bind(networking, "networking"))
-	Multithreading.add_task(save_file.bind(keybindings, "keybindings"))
 
 
 func store_player_state() -> void:
