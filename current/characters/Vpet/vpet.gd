@@ -2,11 +2,36 @@ extends Node2D
 
 
 var moving: bool = false
+var current_animation: String = ""
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _physics_process(_delta: float) -> void:
-	if not moving and rng.randi_range(0, 299) == 0:
-		moving = true
-		await create_tween().tween_property(self, "global_position:x", rng.randi_range(0, 1080), 5.0).finished
-		moving = false
+	if not moving and current_animation == "":
+		if rng.randi_range(0, 299) == 0:
+			moving = true
+			await create_tween().tween_property(self, "global_position:x", rng.randi_range(0, 1080), 5.0).finished
+			moving = false
+		elif rng.randi_range(0, 299) == 0:
+			match randi_range(0, 6):
+				0:
+					current_animation = "angry"
+				1:
+					current_animation = "grumpy"
+				2:
+					current_animation = "happy"
+				3:
+					current_animation = "jump"
+				4:
+					current_animation = "laugh"
+				5:
+					current_animation = "love"
+				6:
+					current_animation = "sick"
+			$AnimatedSprite2D.play(current_animation)
+	
 	global_position= global_position.clamp(Vector2(0, 0), Vector2(1080, 1600))
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	current_animation = ""
+	$AnimatedSprite2D.play("idle")
