@@ -1,14 +1,12 @@
 extends Node2D
 
 
-var moving: bool = false
 var current_animation: String = "idle"
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _physics_process(_delta: float) -> void:
 	if current_animation == "idle":
 		if rng.randi_range(0, 299) == 0:
-			moving = true
 			if rng.randi_range(0, 1) == 0:
 				current_animation = "jump"
 			else:
