@@ -165,7 +165,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("28_5ks04")
 }],
-"loop": false,
+"loop": true,
 "name": &"jump",
 "speed": 3.0
 }, {
@@ -274,7 +274,7 @@ texture_filter = 1
 position = Vector2(0, -197)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_4s48g")
-animation = &"walk"
+animation = &"idle"
 autoplay = "idle"
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
