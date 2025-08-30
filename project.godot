@@ -34,7 +34,9 @@ gdscript/warnings/inferred_declaration=1
 
 window/size/viewport_width=1080
 window/size/viewport_height=1920
-window/stretch/scale=0.5
+window/size/mode=3
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [rendering]
 
